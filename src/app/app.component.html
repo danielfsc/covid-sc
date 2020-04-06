@@ -1,0 +1,39 @@
+<div class="container2">
+  <div class="row">
+    <div class=" col-md-8 col-sm-12">
+      <app-charts [(graf1)]="graf1" [(graf2)]="graf2" [(refLines)]="refLines">
+      </app-charts>
+    </div>
+    <div class="col-md-4 col-sm-12">
+      <div class="w-100 text-center border shadow">
+        <!-- <button mat-mini-fab (click)="backStep()" color="primary">
+          <mat-icon style=" transform: scale(1.3);">skip_previous</mat-icon>
+        </button> &nbsp;
+        <button mat-mini-fab (click)="back()" color="primary">
+          <mat-icon style=" transform: scale(1.3);">fast_rewind</mat-icon>
+        </button> &nbsp; -->
+        <mat-form-field class="input-width">
+          <mat-label>Passos</mat-label>
+          <input matInput type="number" [(ngModel)]="passos">
+        </mat-form-field> &nbsp;
+        <button mat-mini-fab (click)="changePlay()" color="primary">
+          <mat-icon style=" transform: scale(1.3);">fast_forward</mat-icon>
+        </button> &nbsp;
+        <button mat-mini-fab (click)="makeStep()" color="primary">
+          <mat-icon style=" transform: scale(1.3);">skip_next</mat-icon>
+        </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button mat-mini-fab (click)="reset()" color="primary">
+          <mat-icon style=" transform: scale(1.3);">refresh</mat-icon>
+        </button>
+
+      </div>
+
+      <app-control [(populacao)]="populacao" [(dinamica)]="dinamica" [(death)]="death" [(tempos)]="tempos"
+        [(capacidade)]="capacidade" (change)="setRefLines($event)">
+      </app-control>
+
+    </div>
+
+  </div>
+</div>
+<button (click)="log()">TESTE</button>

@@ -1,0 +1,42 @@
+<mat-accordion>
+  <mat-expansion-panel expanded="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        População
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-population [(populacao)]="populacao"></app-population>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Dinâmica
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-dinamic [(dinamica)]="dinamica"></app-dinamic>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Capacidade Hospitalar
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-capacity [(capacidade)]="capacidade"></app-capacity>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Tempos
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-times [(tempos)]="tempos"></app-times>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        CURA/MORTE
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-death [(death)]="death"></app-death>
+  </mat-expansion-panel>
+</mat-accordion>
