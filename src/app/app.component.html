@@ -6,12 +6,13 @@
     </div>
     <div class="col-md-4 col-sm-12">
       <div class="w-100 text-center border shadow">
-        <!-- <button mat-mini-fab (click)="backStep()" color="primary">
-          <mat-icon style=" transform: scale(1.3);">skip_previous</mat-icon>
-        </button> &nbsp;
-        <button mat-mini-fab (click)="back()" color="primary">
-          <mat-icon style=" transform: scale(1.3);">fast_rewind</mat-icon>
-        </button> &nbsp; -->
+        <mat-form-field style="width: 50px;">
+          <mat-label>Estado</mat-label>
+          <mat-select [(value)]="state" (selectionChange)=reset()>
+            <mat-option *ngFor="let s of statesList" [value]="s">{{s}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <mat-form-field class="input-width">
           <mat-label>Passos</mat-label>
           <input matInput type="number" [(ngModel)]="passos">
@@ -36,4 +37,3 @@
 
   </div>
 </div>
-<button (click)="log()">TESTE</button>

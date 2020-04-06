@@ -17,12 +17,43 @@ import { timer } from "rxjs";
 })
 export class AppComponent implements OnInit {
   title = "Sistema para análise da evolução da covid";
+  statesList = [
+    "AC",
+    "AL",
+    "AP",
+    "AM",
+    "BA",
+    "CE",
+    "DF",
+    "ES",
+    "GO",
+    "MA",
+    "MT",
+    "MS",
+    "MG",
+    "PA",
+    "PB",
+    "PE",
+    "PR",
+    "PI",
+    "RJ",
+    "RN",
+    "RO",
+    "RR",
+    "RS",
+    "SC",
+    "SE",
+    "SP",
+    "TO"
+  ];
+
   populacao = new Populacao();
   dinamica = new Dinamica();
   capacidade = new Capacidade();
   tempos = new Tempo();
   death = new Sobrevida();
   passos: number;
+  state = "SC";
   time: number;
   infectadosIniciais: number;
   play: boolean;
@@ -37,7 +68,9 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.reset();
   }
-
+  changeState() {
+    console.log(this.state);
+  }
   reset() {
     this.populacao = new Populacao();
     this.dinamica = new Dinamica();
@@ -71,11 +104,11 @@ export class AppComponent implements OnInit {
         name: "Leitos Totais"
       }
     ];
-    this.dataService.sendGetRequest("SC").subscribe((data: IModel) => {
+    this.dataService.sendGetRequest(this.state).subscribe((data: IModel) => {
       this.populacao.total.value = data.results[0].estimated_population_2019;
       data.results.reverse().map((v, t) => {
-        this.graf1[0].series.push({ name: t + 1, value: v.confirmed });
-        this.graf2[5].series.push({ name: t + 1, value: v.deaths });
+        this.graf1[0].series.push({ name: t + 5, value: v.confirmed });
+        this.graf2[5].series.push({ name: t + 5, value: v.deaths });
       });
       this.updateChart();
     });
