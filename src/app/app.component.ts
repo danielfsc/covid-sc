@@ -83,9 +83,10 @@ export class AppComponent implements OnInit {
     this.play = false;
     this.graf1 = [
       { name: "Dados - S.E.S", series: [] },
+      { name: "Expostos", series: [] },
       { name: "Infectados", series: [] },
-      { name: "Hospitalizados", series: [] },
-      { name: "Mortos", series: [] }
+      { name: "Infectados Graves", series: [] },
+      { name: "Total Infectados", series: [] }
     ];
     this.graf2 = [
       { name: "Hosp. Total", series: [] },
@@ -93,7 +94,8 @@ export class AppComponent implements OnInit {
       { name: "UTI", series: [] },
       { name: "Ventilação Mecânica", series: [] },
       { name: "Leito Grave", series: [] },
-      { name: "Mortos (SES)", series: [] }
+      { name: "Mortos (SES)", series: [] },
+      { name: "Mortos", series: [] }
     ];
     this.refLines = [
       { value: 0, name: "" },
@@ -167,36 +169,67 @@ export class AppComponent implements OnInit {
       Hlv: this.populacao.hospitalizadoVentilador.value,
       Hlg: this.populacao.hospitalizadoGrave.value
     };
-    // console.log("dS= " + this.dS(arg));
-    // console.log("dE= " + this.dE(arg));
-    // console.log("dI= " + this.dI(arg));
-    // console.log("dIg= " + this.dIg(arg));
-    // console.log("dHl= " + this.dHl(arg));
-    // console.log("dHu= " + this.dHu(arg));
-    // console.log("dHlv= " + this.dHlv(arg));
+
     this.populacao.saudaveis.value += this.dS(arg);
     this.populacao.exposto.value += this.dE(arg);
     this.populacao.infectado.value += this.dI(arg);
-
     this.populacao.infectadoGrave.value += this.dIg(arg);
     this.populacao.hospitalizadoLeito.value += this.dHl(arg);
     this.populacao.hospitalizadoUTI.value += this.dHu(arg);
     this.populacao.hospitalizadoVentilador.value += this.dHlv(arg);
     this.populacao.hospitalizadoGrave.value += this.dHlg(arg);
     this.populacao.mortos.value += this.dM(arg);
+    console.log("dS= " + this.dS(arg));
+    console.log("dE= " + this.dE(arg));
+    console.log(
+      "dI= " +
+        this.dI(arg).toFixed(2) +
+        "  I = " +
+        this.populacao.infectado.value.toFixed(2)
+    );
+    console.log(
+      "dIg= " +
+        this.dIg(arg).toFixed(2) +
+        "  Ig = " +
+        this.populacao.infectadoGrave.value.toFixed(2)
+    );
+    console.log(
+      "dHl= " +
+        this.dHl(arg).toFixed(2) +
+        "  Hl = " +
+        this.populacao.hospitalizadoLeito.value.toFixed(2)
+    );
+    console.log(
+      "dHu= " +
+        this.dHu(arg).toFixed(2) +
+        "  Hu = " +
+        this.populacao.hospitalizadoUTI.value.toFixed(2)
+    );
+    console.log(
+      "dHlv= " +
+        this.dHlv(arg).toFixed(2) +
+        "  Hlv = " +
+        this.populacao.hospitalizadoVentilador.value.toFixed(2)
+    );
+    console.log("-------------------------");
   }
   setData(t: number) {
-    let val =
-      this.populacao.infectado.value + this.populacao.infectadoGrave.value;
+    let val = this.populacao.exposto.value;
     this.graf1[1].series.push({ name: t, value: val });
-    val = this.populacao.mortos.value;
+    //   { name: "Infectados", series: [] },
+    //   { name: "Infectados Graves", series: [] },
+    //   { name: "Total Infectados", series: [] }
+    val = this.populacao.infectado.value;
+    this.graf1[2].series.push({ name: t, value: val });
+    val = this.populacao.infectadoGrave.value;
     this.graf1[3].series.push({ name: t, value: val });
+    val = this.populacao.infectado.value + this.populacao.infectadoGrave.value;
+    this.graf1[4].series.push({ name: t, value: val });
     val =
       this.populacao.hospitalizadoGrave.value +
       this.populacao.hospitalizadoLeito.value +
       this.populacao.hospitalizadoUTI.value +
       this.populacao.hospitalizadoVentilador.value;
-    this.graf1[2].series.push({ name: t, value: val });
     this.graf2[0].series.push({ name: t, value: val });
     this.graf2[1].series.push({
       name: t,
@@ -213,6 +246,10 @@ export class AppComponent implements OnInit {
     this.graf2[4].series.push({
       name: t,
       value: this.populacao.hospitalizadoGrave.value
+    });
+    this.graf2[6].series.push({
+      name: t,
+      value: this.populacao.mortos.value
     });
     this.updateChart();
   }
@@ -272,9 +309,10 @@ export class AppComponent implements OnInit {
     );
   }
   dIg(a) {
-    const frac =
-      (a.Hl + a.Hu + a.Hlv + a.Hlg) /
-      (this.capacidade.leito.value + this.capacidade.uti.value);
+    const frac = Math.max(
+      (a.Hl + a.Hlv + a.Hlg) / this.capacidade.leito.value,
+      0
+    );
     // console.log(frac);
     return (
       (a.I * this.death.infectado.morte()) / (100 * this.tempos.tInfc.value) -
@@ -284,9 +322,10 @@ export class AppComponent implements OnInit {
     );
   }
   dHl(a) {
-    const frac =
-      (a.Hl + a.Hu + a.Hlv + a.Hlg) /
-      (this.capacidade.leito.value + this.capacidade.uti.value);
+    const frac = Math.max(
+      (a.Hl + a.Hlv + a.Hlg) / this.capacidade.leito.value,
+      0
+    );
 
     return (
       (1 - frac) * (this.dinamica.gamma.value / 100) * a.Ig -

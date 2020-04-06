@@ -1,8 +1,10 @@
-.container2{
+.container2 {
   width: 100% !important;
   height: 100% !important;
   min-height: 780px;
 }
-.chart-wrapper{
+
+.chart-wrapper {
   height: 49%;
+  width: 100%;
 }

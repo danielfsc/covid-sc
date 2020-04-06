@@ -11,6 +11,7 @@ export class ChartsComponent implements OnInit {
   @Input() graf2;
   @Input() refLines;
   legend = true;
+  view = undefined;
   showLabels = true;
   animations = true;
   xAxis = true;

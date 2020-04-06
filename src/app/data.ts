@@ -12,7 +12,7 @@ export class Tempo {
   };
   tInfc = {
     name: "Tempo de Infecção",
-    value: 14,
+    value: 12,
     min: 0,
     max: 20,
     step: 1,
@@ -23,7 +23,7 @@ export class Tempo {
   };
   tLeito = {
     name: "Tempo em Leito Comum",
-    value: 13,
+    value: 10,
     min: 0,
     max: 20,
     step: 1,
@@ -34,7 +34,7 @@ export class Tempo {
   };
   tUti = {
     name: "Tempo em UTI",
-    value: 10,
+    value: 6,
     min: 0,
     max: 20,
     step: 1,
@@ -56,7 +56,7 @@ export class Tempo {
   };
   tLG = {
     name: "Tempo em Leito em Estado Grave",
-    value: 5,
+    value: 3,
     min: 0,
     max: 20,
     step: 1,
@@ -67,7 +67,7 @@ export class Tempo {
   };
   tInfcGrave = {
     name: "Tempo de Infecção Grave",
-    value: 5,
+    value: 3,
     min: 0,
     max: 20,
     step: 1,
@@ -142,7 +142,7 @@ export class Populacao {
 export class Capacidade {
   leito = {
     name: "Número de leitos comuns",
-    value: 100
+    value: 850
   };
   uti = {
     name: "Número de leitos de UTI",
@@ -150,7 +150,7 @@ export class Capacidade {
   };
   ventilador = {
     name: "Número de Ventiladores",
-    value: 300
+    value: 15
   };
 }
 export class Sobrevida {
@@ -184,7 +184,7 @@ export class Sobrevida {
   };
   hospitalizadoLeito = {
     name: "Probabilidade de Melhora do Hospitalizado em Leito",
-    cura: 40,
+    cura: 60,
     min: 0,
     max: 100,
     step: 1,
@@ -212,7 +212,7 @@ export class Sobrevida {
   };
   hospitalizadoVentilador = {
     name: "Probabilidade de Melhora do Hospitalizado em Leito com Ventilador",
-    cura: 40,
+    cura: 50,
     min: 0,
     max: 100,
     step: 1,

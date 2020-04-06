@@ -1,20 +1,21 @@
-<div class="container2 pl-1">
-  <div class="chart-wrapper row">
-    <div class="chart-line">
-      <ngx-charts-line-chart class="charts-text" [legend]="legend" [showXAxisLabel]="showXAxisLabel"
-        [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis" [yAxis]="yAxis" [xAxisLabel]="xAxisLabel"
-        [yAxisLabel]="yAxisLabel" [referenceLines]="refLines" [showRefLines]="true" [showRefLabels]="true"
+<div class="container2 h-100 pl-1">
+  <div class="chart-wrapper pl-2">
+    <div class="h-100 ">
+      <ngx-charts-line-chart [legend]="legend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+        [xAxis]="xAxis" [yAxis]="yAxis" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [referenceLines]="refLines"
+        [showRefLines]="true" [showRefLabels]="true" [autoScale]="true"
         [scheme]="{ domain: ['#0000FF','#00AF00', '#DF0000', '#000000' ] }" [results]="graf1">
       </ngx-charts-line-chart>
     </div>
   </div>
 
-  <div class="chart-wrapper row">
-    <div class="chart-line">
-      <ngx-charts-line-chart class="charts-text" [legend]="legend" [showXAxisLabel]="showXAxisLabel"
-        [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis" [yAxis]="yAxis" [xAxisLabel]="xAxisLabel"
-        [referenceLines]="refLines" [showRefLines]="true" [showRefLabels]="true" [yAxisLabel]="yAxisLabel"
-        [scheme]="{ domain: ['#0000FF','#00AF00', '#000000', '#DF0000' , '#993300' , '#993300' ] }" [results]="graf2">
+  <div class="chart-wrapper pl-3">
+    <div class="h-100">
+      <ngx-charts-line-chart [legend]="legend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+        [xAxis]="xAxis" [yAxis]="yAxis" [xAxisLabel]="xAxisLabel" [autoScale]="true" [referenceLines]="refLines"
+        [showRefLines]="true" [showRefLabels]="true" [yAxisLabel]="yAxisLabel"
+        [scheme]="{ domain: ['#0000FF','#00AF00', '#FFAA00', '#DF0000' , '#990099' , '#993300', '#000' ] }"
+        [results]="graf2">
       </ngx-charts-line-chart>
     </div>
   </div>
